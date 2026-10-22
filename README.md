@@ -1,75 +1,76 @@
-# React + TypeScript + Vite
+# TaskFlow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TaskFlow is a simple Kanban application built with React, TypeScript, and Express. It helps users organize tasks into three columns: To Do, In Progress, and Done.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- View tasks grouped by status.
+- Create new tasks.
+- Update task status.
+- Delete tasks.
+- Display loading, success, and error messages.
+- Responsive layout and keyboard accessibility.
 
-## React Compiler
+## Technologies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- TypeScript
+- Vite
+- Node.js and Express
+- Fetch API
+- Jest
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- `src/` – React frontend.
+- `src/services/taskApi.ts` – API requests to the backend.
+- `src/utils/` – Helper functions and unit tests.
+- `server/` – Express backend.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Run Locally
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 1. Start the backend
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Open a terminal and run:
 
+```bash
+cd server
+npm install
+node server.js
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+The backend runs on port 3001 by default.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### 2. Start the frontend
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Open a second terminal in the project root and run:
 
+```bash
+npm install
+npm run dev
 ```
+
+The frontend uses `http://localhost:3001` by default for API requests.
+
+To use a different backend URL, set the `VITE_API_URL` environment variable before building the frontend.
+
+## Tests and Build
+
+Run the unit tests:
+
+```bash
+npm test
+```
+
+Build the frontend for production:
+
+```bash
+npm run build
+```
+
+## Deployment
+
+The frontend is deployed on Vercel and the backend is deployed on Render.
+
+- Frontend: https://taskflow-sooty-omega-42.vercel.app/
+- Backend API: https://taskflow-5xkj.onrender.com/api/tasks
